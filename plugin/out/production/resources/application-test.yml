@@ -1,0 +1,53 @@
+server:
+  port: 8183
+  address: localhost
+  #ssl:
+    #key-store: classpath:.keystore
+    #key-store-password: 123456
+    #key-store-type: JKS
+    #key-alias=
+
+spring:
+  application:
+    name: pos-test
+  redis:
+    host: 192.168.1.11
+    port: 6379
+    password: root
+    pool:
+      max-active: 8
+      max-idle: 8
+      max-wait: -1
+  datasource:
+    url: jdbc:mysql://192.168.1.188:3306/pos?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/demo
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  activemq:
+    broker-url: tcp://127.0.0.1:61616
+    in-memory: true
+    password: admin
+    user: admin
+    packages:
+      trust-all: false
+      trusted:
+    pool:
+      enabled: false
+      expiry-timeout: 0
+      idle-timeout: 30000
+      max-connections: 1
+logging:
+  level:
+    #root: DEBUG
+    org.hibernate: ERROR
+    org.springframework:
+      #web: DEBUG
+      transaction.interceptor: ERROR

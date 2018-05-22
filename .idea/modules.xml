@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BingoCommon/BingoCommon.iml" filepath="$PROJECT_DIR$/.idea/modules/BingoCommon/BingoCommon.iml" group="BingoCommon" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BingoCommon/BingoCommon_jpaModelgen.iml" filepath="$PROJECT_DIR$/.idea/modules/BingoCommon/BingoCommon_jpaModelgen.iml" group="BingoCommon" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BingoCommon/BingoCommon_main.iml" filepath="$PROJECT_DIR$/.idea/modules/BingoCommon/BingoCommon_main.iml" group="BingoCommon" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BingoCommon/BingoCommon_test.iml" filepath="$PROJECT_DIR$/.idea/modules/BingoCommon/BingoCommon_test.iml" group="BingoCommon" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BingoWeb/BingoWeb.iml" filepath="$PROJECT_DIR$/.idea/modules/BingoWeb/BingoWeb.iml" group="BingoWeb" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BingoWeb/BingoWeb_main.iml" filepath="$PROJECT_DIR$/.idea/modules/BingoWeb/BingoWeb_main.iml" group="BingoWeb" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BingoWeb/BingoWeb_test.iml" filepath="$PROJECT_DIR$/.idea/modules/BingoWeb/BingoWeb_test.iml" group="BingoWeb" />
+      <module fileurl="file://$PROJECT_DIR$/docter.iml" filepath="$PROJECT_DIR$/docter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/plugin/plugin.iml" filepath="$PROJECT_DIR$/.idea/modules/plugin/plugin.iml" group="plugin" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/plugin/plugin_main.iml" filepath="$PROJECT_DIR$/.idea/modules/plugin/plugin_main.iml" group="plugin" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/plugin/plugin_test.iml" filepath="$PROJECT_DIR$/.idea/modules/plugin/plugin_test.iml" group="plugin" />
+    </modules>
+  </component>
+</project>

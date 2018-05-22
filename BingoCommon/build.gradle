@@ -1,0 +1,132 @@
+apply plugin: 'org.springframework.boot'
+apply plugin: 'jpa-schema-generate'
+apply plugin: 'at.comm_unity.gradle.plugins.jpamodelgen'
+
+buildscript {
+    repositories {
+        maven { url "$springRepo" }
+        maven { url "$aliyunRepo" }
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.2.RELEASE",
+                "io.github.divinespear:jpa-schema-gradle-plugin:0.2.1",
+                "gradle.plugin.at.comm_unity.gradle.plugins:jpamodelgen-plugin:$jpamodelgenPluginVersion"
+        )
+    }
+}
+
+
+
+
+archivesBaseName = 'BingoCommon'
+
+/**配置源码目录**/
+sourceSets {
+    main {
+        java.srcDirs = ['src/main/java' , 'src/main/generated']
+    }
+
+}
+
+/**生成模型元数据**/
+jpaModelgen {
+    library = "org.hibernate:hibernate-jpamodelgen:$hibernateJpamodelgenVersion"
+    jpaModelgenSourcesDir = "src/main/generated"
+}
+
+/**生成用于在生产或测试环境执行的数据库脚本**/
+generateSchema {
+    format = true
+    persistenceUnitName = 'default'
+
+	//***MySQL***
+   /* databaseProductName = 'MySQL'
+    databaseMajorVersion = 5
+    databaseMinorVersion = 7
+    jdbcDriver = 'com.mysql.jdbc.Driver'
+    jdbcUrl = 'jdbc:mysql://localhost:3306/cashier?useSSL=false'
+    jdbcUser = 'root'
+    jdbcPassword = ''*/
+
+//	****H2***
+    databaseProductName = 'H2'
+    databaseMajorVersion = 1
+    databaseMinorVersion = 4
+    jdbcDriver = 'org.h2.Driver'
+    jdbcUrl = 'jdbc:h2:mem:testdb'
+    jdbcUser = 'sa'
+    jdbcPassword = ''
+    scriptAction = 'drop-and-create'
+    createOutputFileName = 'schema.sql'
+    dropOutputFileName = 'drop.sql'
+    vendor = 'hibernate'
+    properties = [
+            'hibernate.dialect': 'org.hibernate.dialect.MySQL5Dialect'
+    ]
+    packageToScan = ['hbg.common.model']
+}
+
+ext {
+}
+
+bootRepackage{
+    enabled = false		//添加原因请参考http://docs.spring.io/autorepo/docs/spring-boot/1.4.5.RELEASE/reference/html/build-tool-plugins-gradle-plugin.html#build-tool-plugins-understanding-the-gradle-plugin
+}
+
+build{
+}
+
+dependencies {
+    compile files(
+
+    )
+    compile(
+            "xpp3:xpp3:$xpp3Version",
+            "xmlpull:xmlpull:$xmlpullVersion",
+            "com.google.zxing:core:$zxingVersion",
+            "com.alibaba:fastjson:$fastjsonVersion",
+            "com.squareup.okhttp3:okhttp:$okhttpVersion",
+            "com.google.code.gson:gson:$gsonVersion",
+            "org.apache.poi:poi:$poiVersion",
+            "org.apache.poi:poi-ooxml:$poiVersion",
+            "commons-beanutils:commons-beanutils:$beanutilsVersion",
+            "commons-codec:commons-codec:$commonCodecVersion",
+            "javax.servlet:javax.servlet-api:$servletVersion",
+            "com.thoughtworks.xstream:xstream:$xstreamVersion",
+            "io.springfox:springfox-swagger2:${swaggerVersion}",
+            "com.aliyun:aliyun-java-sdk-core:$aliyunSdkVersion",
+            "javax.validation:validation-api:$validationVersion",
+            "org.apache.commons:commons-lang3:$commonLangVersion",
+            "org.apache.httpcomponents:httpmime:$httpclientVersion",
+            "commons-logging:commons-logging:$commonsLoggingVersion",
+            "org.apache.httpcomponents:fluent-hc:$httpclientVersion",
+            "org.apache.httpcomponents:httpclient:$httpclientVersion",
+            "org.hibernate:hibernate-validator:$hibernateValidatorVersion",
+            "org.apache.httpcomponents:httpclient-cache:$httpclientVersion",
+            "org.springframework.boot:spring-boot-starter-aop:$springBootVersion",
+            "org.springframework.security:spring-security-web:$springSecurityVersion",
+            "com.fasterxml.jackson.dataformat:jackson-dataformat-xml:$jacksonVersion",
+            "commons-configuration:commons-configuration:$commonsConfigurationVersion",
+            "org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion",
+            "org.springframework.boot:spring-boot-starter-data-redis:$springBootVersion",
+            "org.springframework.boot:spring-boot-starter-activemq:2.0.1.RELEASE",
+            "org.springframework.boot:spring-boot-starter-data-mongodb:2.0.1.RELEASE:",
+            "org.springframework.security:spring-security-config:$springSecurityVersion",
+            "org.redisson:redisson:$redissonVersion",
+            "commons-httpclient:commons-httpclient:$commonsHttpclientVersion",
+            "org.bouncycastle:bcprov-jdk15on:$bouncyCastleVersion",
+            "commons-codec:commons-codec:$commonsCodecVersion",
+            "net.coobird:thumbnailator:0.4.8",
+            "commons-io:commons-io:2.5"
+    )
+    runtime(
+            "com.h2database:h2:$h2Version",
+            "mysql:mysql-connector-java:$mysqlDriverVersion"
+    )
+}
+configurations {
+    // 所有需要忽略的包定义在此
+    //all*.exclude group: 'commons-httpclient'
+    //all*.exclude group: 'commons-beanutils', module: 'commons-beanutils'
+}

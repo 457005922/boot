@@ -1,0 +1,47 @@
+buildscript {
+    repositories {
+        maven { url "$springRepo" }
+        maven { url "$aliyunRepo" }
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.2.RELEASE",
+                "io.spring.gradle:propdeps-plugin:${propdepsPluginVersion}"
+        )
+    }
+}
+
+apply plugin: 'org.springframework.boot'
+
+archivesBaseName = 'BingoWeb'
+configure(allprojects) {
+    apply plugin: 'propdeps'
+    apply plugin: 'propdeps-maven'
+    apply plugin: 'propdeps-idea'
+    apply plugin: 'propdeps-eclipse'
+}
+ext {
+    springBootVar = '1.4.5.RELEASE'
+}
+
+dependencies {
+    compile(
+            project(':BingoCommon'),//要依赖的模块
+            "org.redisson:redisson:$redissonVersion",
+            "io.springfox:springfox-swagger-ui:${swaggerVersion}",
+            "org.springframework.session:spring-session:$springSessionVersion",
+            "org.springframework.boot:spring-boot-starter-web:$springBootVersion",
+            "org.springframework.boot:spring-boot-starter-websocket:$springBootWebsocketVersion",
+    )
+    // spring boot
+    compile "org.springframework.boot:spring-boot-starter-web:$springBootVar"
+    testCompile(
+            'org.springframework.boot:spring-boot-starter-test',
+            "info.cukes:cucumber-spring:${cucumberVersion}",
+            "info.cukes:cucumber-jvm:${cucumberVersion}",
+            "info.cukes:cucumber-java:${cucumberVersion}",
+            "info.cukes:cucumber-core:${cucumberVersion}",
+            "info.cukes:cucumber-junit:${cucumberVersion}",
+            "org.seleniumhq.selenium:selenium-server:${seleniumVersion}",
+    )
+}

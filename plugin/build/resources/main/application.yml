@@ -1,0 +1,58 @@
+#服务器配置
+server:
+  context-path: /plugin
+  tomcat:
+    uri-encoding: UTF-8
+#  session:
+#    timeout: 86400
+spring:
+  #默认激活开发环境配置
+  profiles:
+    active: test
+  #HTTP编码配置
+  http:
+    encoding:
+      charset: utf8
+      force: true
+    multipart:
+      maxFileSize: 100Mb
+      maxRequestSize: 100Mb
+
+  #Thymeleaf模板引擎配置
+  #thymeleaf:
+    #check-template: true
+    #check-template-location: true
+    #content-type: text/html
+    #enabled: true
+    #encoding: UTF-8
+    #mode: HTML5
+    #prefix:classpath: /templates/
+    #suffix: .html
+  #数据源配置（使用嵌入式数据库时，JPA会自动根据实体来创建数据库）
+
+
+  #jpa 配置
+  jpa:
+    hibernate.naming.physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+  #国际化配置
+  messages:
+    basename: i18n/messages
+    cache-seconds: -1
+    encoding: UTF-8
+    fallback-to-system-locale: true
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+    date-format: 'yyyy-MM-dd HH:mm:ss'
+    locale: zh
+    time-zone: GMT+8
+security:
+  basic:
+    enabled: false
+    enable-csrf: false
+logging:
+  file: ${user.home}/logs/${spring.application.name}.log
+
